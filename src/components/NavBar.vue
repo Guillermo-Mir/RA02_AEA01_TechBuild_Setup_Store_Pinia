@@ -12,3 +12,14 @@ import ComponentCard from './ComponentCard.vue';
     <ComponentCard/>
   </header>
 </template>
+
+<style>
+
+header{
+    background-color: black;
+}
+h1{
+    color:#5694DB;
+}
+
+</style>
