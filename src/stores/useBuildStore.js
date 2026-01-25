@@ -10,21 +10,28 @@ export const useBuildStore = defineStore('BuildStore', () => {
 
     //getters
     const totalPrice = computed(() => components.value.reduce((acomulador, elemento) => acomulador + elemento.price, 0))
-    const groupedByType = groupBy(components.value, (item) => item.type)
+     const groupedByType = computed(()=> {
+        const grouped = groupBy(items.value, (item)=> item.type)
+        const sorted = Object.keys(grouped).sort()
+        let inOrder = {}
+        sorted.forEach((key)=> (inOrder[key] = grouped[key]))
+
+        return inOrder
+    })
     
 
     //actions
     function addComponent(){
-
+         contador = parseInt(contador)
+        for (let i = 0; i < contador; i++) {
+            items.value.push(item)
+        }
     }
 
-    function removeComponent(){
-        
-    }
+    const removeComponent =  (itemName) => (items.value = items.value.filter((item) => item.name != itemName))
 
-    function checkout(){
-        
-    }
+
+    const checkout = () => {}
 
   return {components, totalPrice, groupedByType, addComponent, removeComponent, checkout}
 })
