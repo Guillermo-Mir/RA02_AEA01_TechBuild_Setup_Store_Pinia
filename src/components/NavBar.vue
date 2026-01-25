@@ -1,15 +1,18 @@
 <script setup>
-// imports
-import ComponentCard from './ComponentCard.vue';
+
 </script>
 
 <template>
-  <header 
-    class="flex justify-between p-6 mb-10 items-center"
-    style="background-image: url('/images/double-bubble-outline.png')"
-  >
-    <h1 class="text-4xl text-gray-700 font-bold">TechBuilds</h1>
-    <ComponentCard/>
+  <header>
+    <div>
+      <h1>TechBuilds</h1>
+    </div>
+
+    <div>
+      <button>
+        <i>CART</i>
+      </button>
+    </div>
   </header>
 </template>
 
