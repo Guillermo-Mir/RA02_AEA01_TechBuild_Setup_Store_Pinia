@@ -9,9 +9,7 @@
     </div>
 
     <div>
-      <button>
-        <i>CART</i>
-      </button>
+    <p>Hola Usuari</p>
     </div>
   </header>
 </template>
@@ -23,6 +21,9 @@ header{
 }
 h1{
     color:#5694DB;
+}
+p{
+  color: white;
 }
 
 </style>
