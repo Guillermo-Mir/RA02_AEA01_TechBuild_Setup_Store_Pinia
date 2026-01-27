@@ -10,7 +10,7 @@
 
     <div>
       <button>
-        <i>CART</i>
+        <slot>CART</slot>
       </button>
     </div>
   </header>

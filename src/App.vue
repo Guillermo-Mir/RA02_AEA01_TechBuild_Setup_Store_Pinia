@@ -19,7 +19,10 @@ const { productRef } = storeToRefs(useHardwareStore())
     <NavBar />
     <main>
       <ul>
-        <ComponentCard v-for="component in productRef" :key="component.name" :component="component" />
+        <ComponentCard v-for="component in productRef" 
+        :key="component.name" 
+        :component="component"
+        @addComponent="BuildStore.addComponent($event, component)" />
       </ul>
     </main>
   </div>

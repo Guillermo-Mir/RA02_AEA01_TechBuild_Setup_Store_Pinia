@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import hardware from '@/data/products.json'
+import products from '@/data/products.json'
 
 
 
@@ -16,7 +16,7 @@ export const useHardwareStore = defineStore('HardwareStore', () => {
 
   //actions 
   function loadHardware(){
-    productRef.value = hardware
+    productRef.value = products
   }
 
   return {productRef, loadHardware}

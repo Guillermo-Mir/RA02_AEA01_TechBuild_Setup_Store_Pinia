@@ -1,9 +1,17 @@
 <script setup>
+import NavBar from './NavBar.vue';
+
+//Un component senzill que rep 
+// un objecte component i emet 
+// l'esdeveniment add quan es clica.
+
 
 const props = defineProps({
   component: Object,
 });
 
+//emit
+defineEmits(["addComponent"])
 </script>
 
 <template>
@@ -17,7 +25,7 @@ const props = defineProps({
         <span>{{ component.type }}</span>
         <p class="preu">{{ component.price }}€</p>
       
-        <button>
+        <button @click="$emit('onAddComponent')" >
             Afegir al Muntatge
         </button>
     </div>
@@ -29,5 +37,6 @@ const props = defineProps({
         width: 100px;
         height: 100px;
     }
+    
 
 </style>
