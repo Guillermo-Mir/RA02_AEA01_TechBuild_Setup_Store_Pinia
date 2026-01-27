@@ -22,11 +22,10 @@ export const useBuildStore = defineStore('BuildStore', () => {
     
 
     //actions
-    function addComponent(){
-         contador = parseInt(contador)
-        for (let i = 0; i < contador; i++) {
-            items.value.push(item)
-        }
+    function addComponent(item){
+        components.value.push(item)
+        console.log(item)
+        console.log(components)
     }
 
     const removeComponent =  (itemName) => (items.value = items.value.filter((item) => item.name != itemName))

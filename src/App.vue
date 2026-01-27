@@ -18,6 +18,7 @@ const { productRef } = storeToRefs(useHardwareStore())
   <div>
     <NavBar />
     <main>
+      <h1>Components Disponibles</h1>
       <ul>
         <ComponentCard v-for="component in productRef" 
         :key="component.name" 

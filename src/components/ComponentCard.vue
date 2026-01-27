@@ -25,7 +25,7 @@ defineEmits(["addComponent"])
         <span>{{ component.type }}</span>
         <p class="preu">{{ component.price }}€</p>
       
-        <button @click="$emit('onAddComponent')" >
+        <button @click="$emit('addComponent')" >
             Afegir al Muntatge
         </button>
     </div>
