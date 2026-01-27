@@ -20,7 +20,7 @@ const { productRef } = storeToRefs(useHardwareStore())
     <main>
       <h1>Components Disponibles</h1>
       <ul>
-        <ComponentCard v-for="component in productRef.grouped" 
+        <ComponentCard v-for="component in productRef" 
         :key="component.name" 
         :component="component"
         @addComponent="BuildStore.addComponent($event, component)" />
