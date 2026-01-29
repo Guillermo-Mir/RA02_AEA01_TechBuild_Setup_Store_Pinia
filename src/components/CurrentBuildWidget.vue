@@ -37,7 +37,7 @@ const BuildStore = useBuildStore()
           <span>Total del pressupost:</span>
           <span class="total-price">{{ BuildStore.totalPrice }}€</span>
         </div>
-        <button class="btn-checkout" @click="confirmOrder">
+        <button class="btn-checkout" @click="BuildStore.checkout()">
           Finalitzar Muntatge
         </button>
       </div>

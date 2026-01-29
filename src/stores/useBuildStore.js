@@ -28,10 +28,18 @@ export const useBuildStore = defineStore('BuildStore', () => {
         console.log(components)
     }
 
-    const removeComponent =  (itemName) => (components.value = components.value.filter((item) => item.name != itemName))
+    const removeComponent =  (itemName) => {
+         const product = components.value.findIndex(item => item.name === itemName)
+        if (product !== -1) {
+            components.value.splice(product, 1)
+        }
+    }
 
 
-    const checkout = () => {}
+    const checkout = () => {
+        alert("Compra realitzada!!!")
+        components.value = [] 
+    }
 
   return {components, totalPrice, groupedByType, addComponent, removeComponent, checkout}
 })
