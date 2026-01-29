@@ -6,7 +6,7 @@ export const useUserSessionStore = defineStore('UserSessionStore', () => {
     const userName = ref("Guest Builder")
     
     const visitGitHub = () => {
-        const githubUser = 'MarcBonamusa'
+        const githubUser = 'Guillermo-Mir'
         window.open(`https://github.com/${githubUser}`, '_blank')
     }
 
