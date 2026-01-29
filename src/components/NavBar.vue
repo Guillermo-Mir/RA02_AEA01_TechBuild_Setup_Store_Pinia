@@ -1,4 +1,7 @@
 <script setup>
+import { useUserSessionStore } from '@/stores/useUserSessionStore';
+
+const userSession = useUserSessionStore();
 
 </script>
 
@@ -9,7 +12,7 @@
     </div>
 
     <div>
-    <p>Hola Usuari</p>
+    <p>Hola, <span @click="userSession.visitGitHub">{{ userSession.userName }}</span></p>
     </div>
   </header>
 </template>

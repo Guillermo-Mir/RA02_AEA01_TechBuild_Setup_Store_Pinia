@@ -1,5 +1,6 @@
 <script setup>
 import ComponentCard from './components/ComponentCard.vue';
+import CurrentBuildWidget from './components/CurrentBuildWidget.vue';
 import NavBar from './components/NavBar.vue';
 import { useBuildStore } from './stores/useBuildStore';
 import { useHardwareStore } from './stores/useHardwareStore';
@@ -25,6 +26,7 @@ const { productRef } = storeToRefs(useHardwareStore())
         :component="component"
         @addComponent="BuildStore.addComponent($event, component)" />
       </ul>
+      <CurrentBuildWidget/>
     </main>
   </div>
 </template>
