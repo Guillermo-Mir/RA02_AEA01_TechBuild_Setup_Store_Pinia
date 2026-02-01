@@ -8,31 +8,31 @@ const BuildStore = useBuildStore()
   <div class="cart-container">
     <h2 class="cart-title">El teu Muntatge</h2>
 
-    <div v-if="BuildStore.components.length === 0" class="empty-cart">
+    <div v-if="BuildStore.isEmpty" class="empty-cart">
       <p>El carret està buit. Comença a afegir components!</p>
     </div>
 
     <div v-else>
-      <div v-for="(products, type) in BuildStore.groupedByType" :key="type" class="category-section">
+      <div v-for="(productsByName, type) in BuildStore.groupedByType" :key="type" class="category-section">
         <h3 class="category-title">{{ type }}</h3>
 
         <ul class="product-list">
-          <li v-for="product in products" :key="product.name" class="product-item">
+          <li v-for="(items, name) in productsByName" :key="name" class="product-item">
             <div class="product-info">
               <span class="product-name">
-                {{ product.name }}
-                <strong v-if="product.quantity > 1">
-                  x{{ product.quantity }}
+                {{ name }}
+                <strong v-if="items.length > 1">
+                  x{{ items.length }}
                 </strong>
               </span>
 
               <span class="product-price">
-                {{ product.price * product.quantity }}€
+                {{ items[0].price * items.length }}€
               </span>
             </div>
 
-            <button class="btn-remove" @click="BuildStore.removeComponent(product.name)" title="Eliminar producte">
-              Eliminar
+            <button class="btn-remove" @click="BuildStore.removeComponent(name)" title="Eliminar producte">
+              <span class="icon"></span> Eliminar
             </button>
           </li>
         </ul>
@@ -108,21 +108,29 @@ const BuildStore = useBuildStore()
   align-items: center;
   padding: 0.75rem 0;
   border-bottom: 1px solid #f1f1f1;
+  transition: all 0.2s;
+}
+
+.product-item:hover {
+  background-color: #fafafa;
 }
 
 .product-info {
   display: flex;
   flex-direction: column;
+  gap: 0.2rem;
 }
 
 .product-name {
   font-weight: 500;
   color: #2d3436;
+  font-size: 0.95rem;
 }
 
 .product-price {
   color: #5694DB;
   font-weight: 700;
+  font-size: 0.9rem;
 }
 
 .btn-remove {
@@ -133,6 +141,10 @@ const BuildStore = useBuildStore()
   border-radius: 6px;
   font-size: 0.8rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
 }
 
 .btn-remove:hover {
@@ -149,11 +161,15 @@ const BuildStore = useBuildStore()
 .total-section {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
 }
 
 .total-price {
   font-size: 1.5rem;
+  color: #2d3436;
 }
 
 .btn-checkout {
@@ -163,7 +179,18 @@ const BuildStore = useBuildStore()
   color: white;
   border: none;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-checkout:hover {
+  background-color: #00947a;
+  transform: translateY(-2px);
+}
+
+.btn-checkout:active {
+  transform: translateY(0);
 }
 </style>

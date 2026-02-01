@@ -1,59 +1,51 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { groupBy } from 'lodash'
 
 export const useBuildStore = defineStore('BuildStore', () => {
-  // STATE
-  const components = ref([])
+    // STATE
+    const components = ref([])
 
-  // GETTERS
-  const totalPrice = computed(() =>
-    components.value.reduce((acc, item) => acc + item.price, 0)
-  )
+    // GETTERS
+    const count = computed(() => components.value.length)
 
-  const groupedByType = computed(() => {
-    const grouped = {}
+    const isEmpty = computed(() => count.value === 0)
 
-    components.value.forEach(item => {
-      if (!grouped[item.type]) {
-        grouped[item.type] = {}
-      }
-
-      if (!grouped[item.type][item.name]) {
-        grouped[item.type][item.name] = {
-          ...item,
-          quantity: 1
-        }
-      } else {
-        grouped[item.type][item.name].quantity++
-      }
-    })
-
-    Object.keys(grouped).forEach(type => {
-      grouped[type] = Object.values(grouped[type])
-    })
-
-    return grouped
-  })
-
-  // ACTIONS
-  const addComponent = (item) => {
-    components.value.push(item)
-  }
-
-
-  const removeComponent = (itemName) => {
-    const index = components.value.findIndex(
-      item => item.name === itemName
+    const totalPrice = computed(() =>
+        components.value.reduce((acc, item) => acc + item.price, 0)
     )
-    if (index !== -1) {
-      components.value.splice(index, 1)
+
+    const groupedByType = computed(() => {
+        const byType = groupBy(components.value, item => item.type)
+        const result = {}
+
+        Object.keys(byType).sort().forEach(type => {
+            const byName = groupBy(byType[type], item => item.name)
+            result[type] = byName
+        })
+
+        return result
+    })
+
+    // ACTIONS
+    const addComponent = (item) => {
+        components.value.push(item)
     }
-  }
 
-  const checkout = () => {
-    alert('Compra realitzada!!!')
-    components.value = []
-  }
 
-  return {components, totalPrice, groupedByType, addComponent, removeComponent, checkout}
+    const removeComponent = (itemName) => {
+        const index = components.value.findIndex(
+            item => item.name === itemName
+        )
+        if (index !== -1) {
+            components.value.splice(index, 1)
+        }
+    }
+
+    const checkout = () => {
+        alert('Compra realitzada!!!')
+        components.value = []
+    }
+
+    return {components, count, isEmpty, totalPrice, groupedByType, addComponent, removeComponent, checkout}
 })
